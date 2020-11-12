@@ -4,7 +4,9 @@
   "description": "Headless state management to handle API calls for Vue.js based on vuex",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "nuxt",
+    "docs:generate": "nuxt generate"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,15 @@
   "bugs": {
     "url": "https://github.com/rwaness/vuapix/issues"
   },
-  "homepage": "https://github.com/rwaness/vuapix#readme"
+  "homepage": "https://github.com/rwaness/vuapix#readme",
+  "devDependencies": {
+    "@nuxt/content": "^1.10.0",
+    "nuxt": "^2.14.7",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^3.2.0",
+    "prism-themes": "^1.5.0"
+  }
 }

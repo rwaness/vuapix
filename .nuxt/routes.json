@@ -1,0 +1,9 @@
+[
+  {
+    "name": "slug",
+    "path": "/:slug?",
+    "component": "/data/www/zz_autres_projets/vuapix/docs/pages/_slug.vue",
+    "chunkName": "pages/_slug",
+    "_name": "_5f114de9"
+  }
+]

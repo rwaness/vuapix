@@ -1,19 +1,6 @@
-# VUAPIX
-**Headless state management to handle API calls for Vue.js based on vuex**
-
-website documentation coming soon ... 🚀
-
 ---
-
-## Instalation
-
-```sh
-npm i vuex vuapix
-```
-
+order: 2
 ---
-
-## Usage
 
 ### Instantiation
 
@@ -189,10 +176,3 @@ export default {
 };
 </script>
 ```
-
----
-
-## Todo
-- create request / response helpers
-- enhance vuapix context
-- improve usage with vuex-orm
