@@ -1,0 +1,58 @@
+import { VUAPIX_NS } from '../lib/const';
+
+export default {
+  computed: {
+    vuapixOption() {
+      const vuapixOption = typeof this.$options.vuapix === 'function'
+        ? this.$options.vuapix.call(this)
+        : this.$options.vuapix;
+      const { namespace, entry, params } = {
+        ...vuapixOption,
+        namespace: vuapixOption.namespace || VUAPIX_NS,
+      };
+      return {
+        entry: `${namespace}/${entry}`,
+        params: (typeof params !== 'function' ? () => params : params).bind(this),
+      };
+    },
+    vuapixData() {
+      return this.$store.getters[`${this.vuapixOption.entry}/data`];
+    },
+    vuapixQuerying() {
+      return this.$store.getters[`${this.vuapixOption.entry}/querying`];
+    },
+    vuapixError() {
+      return this.$store.getters[`${this.vuapixOption.entry}/error`];
+    },
+  },
+
+  created() {
+    if (!this.vuapixOption || !this.vuapixOption.entry) {
+      throw new Error(`Missing "vuapix" $option on component "${this.$options.name || 'unknown'}"`);
+    }
+  },
+
+  watch: {
+    vuapixQuerying(vuapixQuerying: boolean) {
+      if (vuapixQuerying) {
+        this.vuapixEmit('query');
+      } else if (this.vuapixError) {
+        this.vuapixEmit('error', this.vuapixError);
+      } else {
+        this.vuapixEmit('success', this.vuapixData);
+      }
+    },
+  },
+
+  methods: {
+    vuapixDoQuery(params: object = {}) {
+      return this.$store.dispatch(
+        this.vuapixOption.entry,
+        { ...params, ...this.vuapixOption.params() },
+      );
+    },
+    vuapixEmit(eventName: string, data?: any) {
+      this.$emit(`vuapix:${eventName}`, data);
+    },
+  },
+};

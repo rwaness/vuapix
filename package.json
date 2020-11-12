@@ -1,0 +1,29 @@
+{
+  "name": "vuapix",
+  "version": "1.0.0",
+  "description": "Headless state management to handle API calls for Vue.js based on vuex",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwaness/vuapix.git"
+  },
+  "keywords": [
+    "vuapix",
+    "vuex",
+    "vuejs",
+    "vue",
+    "api",
+    "headless",
+    "js",
+    "javascript"
+  ],
+  "author": "rwaness <erwan.oger35@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rwaness/vuapix/issues"
+  },
+  "homepage": "https://github.com/rwaness/vuapix#readme"
+}
