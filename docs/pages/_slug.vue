@@ -35,11 +35,9 @@ export default {
       articles,
       article,
     ] = await Promise.all([
-      $content().fetch(),
-      $content(params.slug || 'introduction').sortBy('order').fetch(),
+      $content().sortBy('order').fetch(),
+      $content(params.slug || 'introduction').fetch(),
     ]);
-
-    console.log(articles, article);
 
     return {
       articles,

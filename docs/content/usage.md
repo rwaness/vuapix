@@ -144,7 +144,7 @@ export default {
 
   mounted() {
     this.vuapixDoQuery();
-  }
+  },
 };
 </script>
 ```
