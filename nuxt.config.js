@@ -1,6 +1,24 @@
 export default {
   srcDir: 'docs/',
   target: 'static',
+  generate: {
+    async routes () {
+      const { $content } = require('@nuxt/content');
+      const { formatArticle } = require('./docs/utils/format');
+      let articles = await $content('/', { deep: true }).only(['path']).fetch();
+      articles = articles.map(formatArticle);
+      console.log(articles);
+      const routes = [
+        '/',
+        '/guide',
+        '/api',
+        '/examples',
+        ...articles.map(({ slug }) => slug),
+      ];
+      console.log(routes);
+      return routes;
+    },
+  },
   head: {
     title: 'Vuapix',
     meta: [
