@@ -1,19 +1,28 @@
 <template>
-  <div class="vuapix-doc">
-    <header class="border-b-2">
-      <div class="container mx-auto">
-        <h1>VUAPIX</h1>
-      </div>
-    </header>
+  <div class="h-screen">
+    <nav-header />
 
-    <div class="vuapix-doc-container container mx-auto">
-      <nuxt-child />
+    <div class="container h-full mx-auto -mt-20 pt-20 flex flex-col">
+      <div class="flex flex-1">
+        <nav-side-bar />
+
+        <nuxt-child class="flex-1 p-4"/>
+      </div>
+
+      <nav-footer />
     </div>
   </div>
 </template>
 
 <script>
+import { NavHeader, NavSideBar, NavFooter } from '@/components/layout';
+
 export default {
+  components: {
+    NavHeader,
+    NavSideBar,
+    NavFooter,
+  },
 };
 </script>
 
@@ -29,14 +38,12 @@ h3 {
   @apply text-lg;
 }
 a {
-  @apply text-blue-600 underline;
+  @apply text-blue-600;
 }
 /* @import "tailwindcss/components";
 @import "tailwindcss/utilities"; */
 
 .vuapix-doc {
-  .vuapix-doc-container {
-    /* @apply container mx-auto; */
-  }
+
 }
 </style>

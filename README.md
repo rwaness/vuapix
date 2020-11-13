@@ -15,8 +15,6 @@ npm i vuex vuapix
 
 ## Usage
 
-### Instantiation
-
 Basic usage :
 
 ```js[~/store/vuapix/index.js]
@@ -30,36 +28,12 @@ export default Vuapix({
 });
 ```
 
-Advanced usage :
-
-```js[~/store/my-vuapix/index.js]
-import Vuapix from 'vuapix';
-import module1 from './module1.js';
-import module2 from './module2/index.js';
-
-const myVuapix = new Vuapix('my-vuapix', {
-  module1,
-  module2,
-});
-export const {
-  hasModule,
-  registerModule,
-  unregisterModule,
-  mapState,
-  mapGetters,
-  mapActions,
-  mapMutations,
-} = myVuapix;
-export default myVuapix;
-```
-
 Plug into store :
 
 ```js[~/store/index.js]
 import Vue from 'vue';
 import Vuex from 'vuex';
 import vuapix from './vuapix';
-import myVuapix from './my-vuapix';
 
 Vue.use(Vuex);
 
@@ -76,12 +50,11 @@ export default new Vuex.Store({
   },
   plugins: [
     vuapix,
-    myVuapix,
   ],
 });
 ```
 
-### Component Provider
+Access data from components :
 
 ```html[~/components/my-comp.vue]
 <template>
@@ -111,7 +84,7 @@ export default {
   },
 
   data() {
-    rerturn {
+    return {
       customParams: 'foobar',
     };
   },
@@ -126,65 +99,6 @@ export default {
     onError(error) {
       console.error(error);
     },
-  },
-};
-</script>
-```
-
-### Mixins
-
-```html[~/components/my-comp.vue]
-<template>
-  <div>
-    <pre>{{ vuapixQuerying }}</pre>
-    <pre>{{ vuapixData }}</pre>
-    <pre>{{ vuapixError }}</pre>
-  </div>
-</template>
-
-<script>
-import { VuapixMixin } from 'vuapix';
-
-export default {
-  name: 'MyComp',
-
-  mixins: [VuapixMixin],
-
-  vuapix: {
-    entry: 'module1/entryX',
-    params: { foo: 'bar' },
-  },
-
-  mounted() {
-    this.vuapixDoQuery();
-  }
-};
-</script>
-```
-
-### Helpers
-
-```html[~/components/my-comp.vue]
-<template>
-  <div class="my-comp">
-    <pre>{{ entryX }}</pre>
-    <pre>{{ entryY }}</pre>
-    <pre>{{ entryZ }}</pre>
-  </div>
-</template>
-
-<script>
-import { mapGetters } from '~/store/my-vuapix';
-
-export default {
-  name: 'MyComp',
-
-  computed: {
-    ...mapGetters('module1', [
-      'entryX',
-      'entryY',
-      'entryZ',
-    ]),
   },
 };
 </script>

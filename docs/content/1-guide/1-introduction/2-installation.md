@@ -1,7 +1,3 @@
----
-order: 2
----
-
 ### Local setup
 
 ```sh

@@ -1,0 +1,38 @@
+Basic usage :
+
+```js[~/store/vuapix/index.js]
+import Vuapix from 'vuapix';
+import module1 from './module1.js';
+import module2 from './module2/index.js';
+
+export default Vuapix({
+  module1,
+  module2,
+});
+```
+
+Plug into store :
+
+```js[~/store/index.js]
+import Vue from 'vue';
+import Vuex from 'vuex';
+import vuapix from './vuapix';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  state: {
+  },
+  getters: {
+  },
+  actions: {
+  },
+  mutations: {
+  },
+  modules: {
+  },
+  plugins: [
+    vuapix,
+  ],
+});
+```
