@@ -31,7 +31,7 @@ export const actions = {
     await dispatch('nav/toggle', false);
   },
   // INIT DOC
-  async initDocPage({ commit }, { slug }) {
+  async initDocPage({ commit, dispatch }, { slug }) {
     commit('setCurrentSlug', slug);
     await dispatch('nav/toggle', true);
   },

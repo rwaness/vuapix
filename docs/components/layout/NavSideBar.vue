@@ -1,5 +1,5 @@
 <template>
-  <nav :class="['hidden', { 'md:block': open, 'drawer': drawer, }, 'w-64 h-screen bg-white border-r-2 divide-y-2']" @click="onClick">
+  <nav v-show="open" :class="['hidden', { 'md:block': open, 'drawer': drawer }, 'w-64 h-screen bg-white border-r-2 divide-y-2']" @click="onClick">
     <div class="mx-4 py-4 flex justify-center">
       <span class="">v{{ version }}</span>
     </div>
