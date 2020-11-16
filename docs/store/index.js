@@ -1,11 +1,14 @@
+import packageJson from '../../package.json';
 import { formatArticle } from '@/utils/format';
 
 export const state = () => ({
+  version: '',
   articles: [],
   currentSlug: '/',
 });
 
 export const getters = {
+  version: (state) => state.version,
   articles: (state) => state.articles,
   currentSlug: (state) => state.currentSlug,
   articleBySlug: (state, getters) => (slug) => {
@@ -19,6 +22,7 @@ export const getters = {
 export const actions = {
   // INIT SERVER
   async nuxtServerInit({ commit }, { $content }) {
+    commit('setVersion', packageJson.version);
     const articles = await $content('/', { deep: true }).only(['path']).fetch();
     commit('setArticles', articles.map(formatArticle));
   },
@@ -34,6 +38,9 @@ export const actions = {
 };
 
 export const mutations = {
+  setVersion(state, version) {
+    state.version = version;
+  },
   setArticles(state, articles) {
     state.articles = articles;
   },

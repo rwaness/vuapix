@@ -14,7 +14,7 @@
       </nuxt-link>
 
       <!-- TOP NAV -->
-      <div class="ml-auto flex flex-no-wrap items-center">
+      <div class="hidden ml-auto md:flex flex-no-wrap items-center">
         <nav class="flex flex-no-wrap">
           <nuxt-link
             v-for="(chapter, index) in tree"

@@ -3,10 +3,14 @@
     <nav-header />
 
     <div class="container h-full mx-auto -mt-20 pt-20 flex flex-col">
-      <div class="flex flex-1">
+      <div class="flex-1 flex">
         <nav-side-bar />
 
-        <nuxt-child class="flex-1 p-4"/>
+        <div class="flex-1 flex flex-col">
+          <nav-breadcrumb />
+
+          <nuxt-child class="p-4 flex-1"/>
+        </div>
       </div>
 
       <nav-footer />
@@ -15,12 +19,13 @@
 </template>
 
 <script>
-import { NavHeader, NavSideBar, NavFooter } from '@/components/layout';
+import { NavHeader, NavSideBar, NavBreadcrumb, NavFooter } from '@/components/layout';
 
 export default {
   components: {
     NavHeader,
     NavSideBar,
+    NavBreadcrumb,
     NavFooter,
   },
 };
