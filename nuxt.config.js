@@ -7,7 +7,7 @@ export default {
       const { formatArticle } = require('./docs/utils/format');
       let articles = await $content('/', { deep: true }).only(['path']).fetch();
       articles = articles.map(formatArticle);
-      console.log(articles);
+      // console.log(articles);
       const routes = [
         '/',
         '/guide',
@@ -15,7 +15,7 @@ export default {
         '/examples',
         ...articles.map(({ slug }) => slug),
       ];
-      console.log(routes);
+      // console.log(routes);
       return routes;
     },
   },

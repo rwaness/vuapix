@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen">
+  <div class="h-screen w-full overflow-x-hidden">
     <nav-header />
 
     <div class="container h-full mx-auto -mt-20 pt-20 flex flex-col">
@@ -27,7 +27,6 @@ export default {
 </script>
 
 <style style="scss">
-/* @import "tailwindcss/base"; */
 h1 {
   @apply text-2xl;
 }
@@ -39,11 +38,5 @@ h3 {
 }
 a {
   @apply text-blue-600;
-}
-/* @import "tailwindcss/components";
-@import "tailwindcss/utilities"; */
-
-.vuapix-doc {
-
 }
 </style>
