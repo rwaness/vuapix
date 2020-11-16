@@ -6,7 +6,9 @@ export const state = () => ({
 
 export const getters = {
   navOpen: (state) => state.navOpen,
-  articles: (state, getters, rootState, rootGetters) => rootGetters.articles,
+  articles: (state, getters, rootState, rootGetters) => (
+    [...rootGetters.articles].sort((a1, a2) => a1.pos < a2.pos ? -1 : 1)
+  ),
   tree: (state, getters) => buildTree(getters.articles),
 };
 

@@ -1,5 +1,11 @@
 <template>
-  <section class="guide">
+  <section class="flex flex-col">
+    <div class="flex justify-between">
+      <nav-breadcrumb />
+
+      <nav-prev-next />
+    </div>
+
     <h2>{{ article.title }}</h2>
 
     <div class="article">
@@ -19,7 +25,15 @@
 </template>
 
 <script>
+import NavBreadcrumb from '@/components/NavBreadcrumb';
+import NavPrevNext from '@/components/NavPrevNext';
+
 export default {
+  components: {
+    NavBreadcrumb,
+    NavPrevNext,
+  },
+
   head() {
     return {
       title: this.article.title,
@@ -70,7 +84,7 @@ export default {
 
 <style lang="scss">
 .guide {
-  @apply col-span-3;
+  // @apply col-span-3;
 
   .article {
     @apply flex flex-row-reverse;

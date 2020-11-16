@@ -1,9 +1,16 @@
 [
   {
-    "name": "slug",
-    "path": "/:slug?",
-    "component": "/data/www/zz_autres_projets/vuapix/docs/pages/_slug.vue",
-    "chunkName": "pages/_slug",
-    "_name": "_5f114de9"
+    "name": "index",
+    "path": "/",
+    "component": "/data/www/zz_autres_projets/vuapix/docs/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_60c7ef31"
+  },
+  {
+    "name": "all",
+    "path": "/*",
+    "component": "/data/www/zz_autres_projets/vuapix/docs/pages/_.vue",
+    "chunkName": "pages/_",
+    "_name": "_46c7b3be"
   }
 ]

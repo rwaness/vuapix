@@ -6,11 +6,7 @@
       <div class="flex-1 flex">
         <nav-side-bar />
 
-        <div class="flex-1 flex flex-col">
-          <nav-breadcrumb />
-
-          <nuxt-child class="p-4 flex-1"/>
-        </div>
+        <nuxt-child class="p-4 flex-1"/>
       </div>
 
       <nav-footer />
@@ -19,13 +15,12 @@
 </template>
 
 <script>
-import { NavHeader, NavSideBar, NavBreadcrumb, NavFooter } from '@/components/layout';
+import { NavHeader, NavSideBar, NavFooter } from '@/components/layout';
 
 export default {
   components: {
     NavHeader,
     NavSideBar,
-    NavBreadcrumb,
     NavFooter,
   },
 };
