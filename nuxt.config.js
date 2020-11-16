@@ -26,7 +26,7 @@ export default {
       if (to.hash) {
         return container.scrollTo({
           // TODO review
-          top: document.querySelector(to.hash).getBoundingClientRect().top - 80,
+          top: document.querySelector(to.hash).getBoundingClientRect().top - 64,
           behavior: 'smooth',
         });
       }
