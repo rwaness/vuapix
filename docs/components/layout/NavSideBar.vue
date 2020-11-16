@@ -1,6 +1,6 @@
 <template>
-  <nav :class="['hidden', { 'md:block': open, 'drawer': drawer }, 'w-64 h-screen bg-white border-r-2 divide-y-2']" @click="onClick">
-    <div class="mx-4 py-4 flex justify-center">
+  <nav :class="['hidden', { 'md:block': open, 'drawer': drawer }, 'w-64 bg-white border-r-2 divide-y-2']" @click="onClick">
+    <div class="mx-4 py-2 flex justify-center">
       <span class="">v{{ version }}</span>
     </div>
 
@@ -64,15 +64,9 @@ export default {
     },
   },
 
-  mounted() {
-    // fix open = true on mobile
-    // if (this.open && window.getComputedStyle(this.$el).display === 'none') {
-    //   this.toggle(false);
-    // }
-  },
-
   watch: {
     drawer(drawer) {
+      this.$el.scrollTop = 0;
       document.getElementById('scroll-container').classList.toggle('backdrop', drawer);
     },
   },
@@ -93,6 +87,7 @@ export default {
 
 <style lang="scss">
 .drawer {
-  @apply block absolute z-50;
+  @apply block fixed z-50 bottom-0 overflow-y-auto;
+  top: 64px;
 }
 </style>
