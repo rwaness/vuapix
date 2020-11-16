@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "docs": "nuxt --port 3007",
+    "docs:publish": "git add docs/ && git commit -m \"publish new content\" && git stash && npm run docs:generate && git add dist/ && git commit --amend && git push && npm run docs:deploy",
     "docs:generate": "nuxt generate",
     "docs:start": "nuxt start",
     "docs:deploy": "git push origin --delete gh-pages && git subtree push --prefix dist origin gh-pages && git stash && CUR_BRCH=$(git branch --show-current) && git checkout gh-pages && git fetch && git reset --hard origin/gh-pages && echo \"vuapix.js.org\" >> CNAME && git add CNAME && git commit -m \"add CNAME\" && git push && git checkout ${CUR_BRCH} && git stash pop && exit 0",
