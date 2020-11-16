@@ -1,5 +1,5 @@
 <template>
-  <nav v-show="open" :class="['hidden', { 'md:block': open, 'drawer': drawer }, 'w-64 h-screen bg-white border-r-2 divide-y-2']" @click="onClick">
+  <nav :class="['hidden', { 'md:block': open, 'drawer': drawer }, 'w-64 h-screen bg-white border-r-2 divide-y-2']" @click="onClick">
     <div class="mx-4 py-4 flex justify-center">
       <span class="">v{{ version }}</span>
     </div>
@@ -46,15 +46,12 @@
 export default {
   name: 'NavSideBar',
 
-  data() {
-    return {
-      drawer: false,
-    };
-  },
-
   computed: {
     open() {
       return this.$store.getters['nav/open'];
+    },
+    drawer() {
+      return this.$store.getters['nav/drawer'];
     },
     version() {
       return this.$store.getters['version'];
@@ -69,28 +66,25 @@ export default {
 
   mounted() {
     // fix open = true on mobile
-    if (this.open && window.getComputedStyle(this.$el).display === 'none') {
-      this.toggle(false);
-    }
+    // if (this.open && window.getComputedStyle(this.$el).display === 'none') {
+    //   this.toggle(false);
+    // }
   },
 
   watch: {
-    open(open) {
-      this.drawer = open;
-    },
     drawer(drawer) {
       document.getElementById('scroll-container').classList.toggle('backdrop', drawer);
     },
   },
 
   methods: {
-    toggle(force) {
-      this.$store.dispatch('nav/toggle', force);
+    toggleDrawer(force) {
+      this.$store.dispatch('nav/toggleDrawer', force);
     },
     onClick({ target }) {
       // if click on link > close nav
       if (target.href) {
-        this.toggle(false);
+        this.toggleDrawer(false);
       }
     },
   },
@@ -99,7 +93,6 @@ export default {
 
 <style lang="scss">
 .drawer {
-  display: block !important;
-  @apply absolute z-50;
+  @apply block absolute z-50;
 }
 </style>

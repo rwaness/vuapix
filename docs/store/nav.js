@@ -1,11 +1,13 @@
 import { buildTree } from '@/utils/format';
 
 export const state = () => ({
-  open: false,
+  open: true,
+  drawer: false
 });
 
 export const getters = {
   open: (state) => state.open,
+  drawer: (state) => state.drawer,
   articles: (state, getters, rootState, rootGetters) => (
     [...rootGetters.articles].sort((a1, a2) => a1.pos < a2.pos ? -1 : 1)
   ),
@@ -14,12 +16,18 @@ export const getters = {
 
 export const actions = {
   toggle({ commit, getters }, force) {
-    commit('toggle', typeof force === 'undefined' ? !getters.open : force)
+    commit('toggle', typeof force === 'undefined' ? !getters.open : force);
+  },
+  toggleDrawer({ commit, getters }, force) {
+    commit('toggleDrawer', typeof force === 'undefined' ? !getters.drawer : force);
   },
 };
 
 export const mutations = {
   toggle(state, open) {
     state.open = open;
-  }
+  },
+  toggleDrawer(state, drawer) {
+    state.drawer = drawer;
+  },
 };

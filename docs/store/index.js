@@ -31,13 +31,12 @@ export const actions = {
     await dispatch('nav/toggle', false);
   },
   // INIT DOC
-  async initDocPage({ commit, dispatch }, { slug }) {
+  initDocPage({ commit }, { slug }) {
     commit('setCurrentSlug', slug);
-    await dispatch('nav/toggle', true);
   },
   // OTHERS COMMON ACTIONS
   clickBackdrop({ dispatch }) {
-    dispatch('nav/toggle', false);
+    dispatch('nav/toggleDrawer', false);
   },
 };
 

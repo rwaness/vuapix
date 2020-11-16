@@ -49,8 +49,7 @@ a {
     @apply relative overflow-y-hidden;
 
     .backdrop-layer {
-      display: block !important;
-      @apply absolute top-0 left-0 w-full h-full z-40 bg-black bg-opacity-25;
+      @apply block absolute top-0 left-0 w-full h-full z-40 bg-black bg-opacity-25;
     }
   }
 }
