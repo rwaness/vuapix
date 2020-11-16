@@ -6,6 +6,7 @@
   "scripts": {
     "docs": "nuxt --port 3007",
     "docs:generate": "nuxt generate",
+    "docs:start": "nuxt start",
     "docs:deploy": "git push origin --delete gh-pages && git subtree push --prefix dist origin gh-pages && git stash && CUR_BRCH=$(git branch --show-current) && git checkout gh-pages && git fetch && git reset --hard origin/gh-pages && echo \"vuapix.js.org\" >> CNAME && git add CNAME && git commit -m \"add CNAME\" && git push && git checkout ${CUR_BRCH} && git stash pop && exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

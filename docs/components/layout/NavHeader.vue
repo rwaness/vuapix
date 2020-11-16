@@ -1,8 +1,8 @@
 <template>
-  <header class="sticky top-0 z-50 border-b-2 bg-white text-gray-700">
+  <header class="sticky top-0 z-50 w-full border-b-2 bg-white text-gray-700">
     <div class="container mx-auto flex flex-wrap p-4 items-center">
       <!-- SIDE NAV TOGGLER -->
-      <button class="md:hidden" @click="toggleNav">
+      <button class="md:hidden mr-3" @click="toggleNav">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -10,12 +10,12 @@
 
       <!-- BRAND -->
       <nuxt-link to="/" class="flex title-font font-medium items-center text-green-800">
-        <span class="ml-3 text-xl">VUAPIX</span>
+        <span class="text-xl">VUAPIX</span>
       </nuxt-link>
 
       <!-- TOP NAV -->
-      <div class="hidden ml-auto md:flex flex-no-wrap items-center">
-        <nav class="flex flex-no-wrap">
+      <div class="ml-auto flex flex-no-wrap items-center">
+        <nav class="hidden md:flex flex-no-wrap">
           <nuxt-link
             v-for="(chapter, index) in tree"
             :key="`chapter-${index}`"
@@ -52,7 +52,7 @@ export default {
 
   methods: {
     toggleNav() {
-      this.$store.dispatch('nav/toggleNav', true);
+      this.$store.dispatch('nav/toggle');
     },
   },
 };

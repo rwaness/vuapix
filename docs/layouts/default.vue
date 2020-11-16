@@ -1,16 +1,18 @@
 <template>
-  <div class="h-screen w-full overflow-x-hidden">
+  <div id="scroll-container" class="h-screen w-full overflow-x-hidden">
     <nav-header />
 
     <div class="container h-full mx-auto -mt-20 pt-20 flex flex-col">
       <div class="flex-1 flex">
         <nav-side-bar />
 
-        <nuxt-child class="p-4 flex-1"/>
+        <nuxt-child class="px-4 py-2 flex-1"/>
       </div>
 
       <nav-footer />
     </div>
+
+    <div class="backdrop-layer hidden" @click="$store.dispatch('clickBackdrop')"/>
   </div>
 </template>
 
@@ -26,7 +28,7 @@ export default {
 };
 </script>
 
-<style style="scss">
+<style lang="scss">
 h1 {
   @apply text-2xl;
 }
@@ -38,5 +40,18 @@ h3 {
 }
 a {
   @apply text-blue-600;
+}
+
+#scroll-container {
+  min-width: 320px;
+
+  &.backdrop {
+    @apply relative overflow-y-hidden;
+
+    .backdrop-layer {
+      display: block !important;
+      @apply absolute top-0 left-0 w-full h-full z-40 bg-black bg-opacity-25;
+    }
+  }
 }
 </style>

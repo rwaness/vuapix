@@ -20,8 +20,8 @@
 
 <script>
 export default {
-  fetch() {
-    this.$store.dispatch('initIndexPage');
+  async fetch() {
+    await this.$store.dispatch('initIndexPage');
   }
 };
 </script>

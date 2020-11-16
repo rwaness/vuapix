@@ -1,24 +1,6 @@
 export default {
   srcDir: 'docs/',
   target: 'static',
-  // generate: {
-  //   async routes () {
-  //     const { $content } = require('@nuxt/content');
-  //     const { formatArticle } = require('./docs/utils/format');
-  //     let articles = await $content('/', { deep: true }).only(['path']).fetch();
-  //     articles = articles.map(formatArticle);
-  //     // console.log(articles);
-  //     const routes = [
-  //       '/',
-  //       '/guide',
-  //       '/api',
-  //       '/examples',
-  //       ...articles.map(({ slug }) => slug),
-  //     ];
-  //     // console.log(routes);
-  //     return routes;
-  //   },
-  // },
   head: {
     title: 'Vuapix',
     meta: [
@@ -38,6 +20,19 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
   ],
+  router: {
+    scrollBehavior(to) {
+      const container = document.getElementById('scroll-container') || window;
+      if (to.hash) {
+        return container.scrollTo({
+          // TODO review
+          top: document.querySelector(to.hash).getBoundingClientRect().top - 80,
+          behavior: 'smooth',
+        });
+      }
+      return container.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+  },
   content: {
     markdown: {
       prism: {

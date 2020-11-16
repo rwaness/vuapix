@@ -1,34 +1,43 @@
 <template>
-  <section class="flex flex-col">
-    <div class="flex justify-between">
+  <section class="overflow-y-hidden divide-y-2">
+    <div class="flex justify-between mb-2">
       <nav-breadcrumb />
 
       <nav-prev-next />
     </div>
 
-    <h2>{{ article.title }}</h2>
+    <div class="pt-4">
+      <h1 class="mb-6">{{ article.title }}</h1>
 
-    <div class="article">
-      <nav class="toc">
-        <ul>
-          <li v-for="anchor of article.toc" :key="anchor.id">
-            <nuxt-link :to="`#${anchor.id}`">{{ anchor.text }}</nuxt-link>
-          </li>
-        </ul>
-      </nav>
+      <div class="flex flex-col items-start lg:flex-row-reverse">
+        <nav v-if="article.toc.length > 0" class="mb-6 px-2 pt-2 lg:w-48 lg:mb-0 lg:ml-4 bg-gray-200">
+          <span>Table of contents</span>
+          <ul class="list-disc list-inside">
+            <li
+              v-for="anchor of article.toc"
+              :key="anchor.id"
+              :class="{ 'py-2': anchor.depth === 2, 'ml-2 pb-2': anchor.depth === 3 }">
+              <nuxt-link :to="`#${anchor.id}`">{{ anchor.text }}</nuxt-link>
+            </li>
+          </ul>
+        </nav>
 
-      <article class="article-content">
-        <nuxt-content :document="article" />
-      </article>
+        <article class="article-content flex-1 overflow-y-hidden">
+          <nuxt-content :document="article" />
+        </article>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import { formatArticle } from '@/utils/format';
 import NavBreadcrumb from '@/components/NavBreadcrumb';
 import NavPrevNext from '@/components/NavPrevNext';
 
 export default {
+  name: 'DocArticle',
+
   components: {
     NavBreadcrumb,
     NavPrevNext,
@@ -36,26 +45,22 @@ export default {
 
   head() {
     return {
-      title: this.article.title,
-      description: this.article.description,
+      title: `${this.article.title} | Vuapix`,
+      description: this.article.description, // TODO generate auto from content
     };
   },
 
   async asyncData ({ $content, redirect, route, store }) {
-    // console.log('asycnData');
     try {
       const { path, slug } = store.getters.articleBySlug(route.path);
       if (slug !== route.path) {
-        // console.log('redirect');
         redirect(301, slug);
         return;
       }
-      // console.log('slug', slug);
       const article = await $content(path).fetch();
-      // console.log('article', article);
       return {
         slug,
-        article,
+        article: formatArticle(article),
       };
     } catch(err) {
       console.error('Unexpected error : ', err);
@@ -63,49 +68,25 @@ export default {
     }
   },
 
-  created() {
-    this.fixedFetch();
-  },
-
-  watch: {
-    article() {
-      this.fixedFetch();
-    },
-  },
-
-  methods: {
-    fixedFetch() {
-      // FETCH NOT CALLED IF WE STAY ON SAME PAGE
-      return this.$store.dispatch('initDocPage', { slug: this.$route.path });
-    },
+  async fetch() {
+    await this.$store.dispatch('initDocPage', { slug: this.$route.path });
   },
 };
 </script>
 
 <style lang="scss">
-.guide {
-  // @apply col-span-3;
-
-  .article {
-    @apply flex flex-row-reverse;
-
-    .toc {
-
+.article-content {
+  .nuxt-content {
+    h2:not(:first-child) {
+      @apply mt-8;
     }
 
-    .article-content {
-      @apply flex-1;
-
-      .nuxt-content {
-        .nuxt-content-highlight {
-          @apply relative;
-          .filename {
-            @apply absolute right-0 text-gray-600 font-light z-10 mr-2 mt-1 text-sm;
-          }
-        }
+    .nuxt-content-highlight {
+      @apply relative;
+      .filename {
+        @apply absolute right-0 text-gray-600 font-light z-10 mr-2 mt-1 text-sm;
       }
     }
-
   }
 }
 </style>

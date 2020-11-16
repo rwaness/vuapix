@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="navOpen" class="hidden md:block w-64 h-screen bg-white border-r-2">
+  <nav :class="['hidden', { 'md:block': open, 'drawer': drawer, }, 'w-64 h-screen bg-white border-r-2 divide-y-2']" @click="onClick">
     <div class="mx-4 py-4 flex justify-center">
       <span class="">v{{ version }}</span>
     </div>
@@ -7,7 +7,7 @@
     <div
       v-for="(chapter, index) in tree"
       :key="`chapter-${index}`"
-      class="mx-4 py-4 border-t-2 "
+      class="mx-4 py-4"
     >
       <nuxt-link :to="chapter.slug" class="flex justify-center">
         {{ chapter.title }}
@@ -46,9 +46,15 @@
 export default {
   name: 'NavSideBar',
 
+  data() {
+    return {
+      drawer: false,
+    };
+  },
+
   computed: {
-    navOpen() {
-      return this.$store.getters['nav/navOpen'];
+    open() {
+      return this.$store.getters['nav/open'];
     },
     version() {
       return this.$store.getters['version'];
@@ -61,10 +67,39 @@ export default {
     },
   },
 
+  mounted() {
+    // fix open = true on mobile
+    if (this.open && window.getComputedStyle(this.$el).display === 'none') {
+      this.toggle(false);
+    }
+  },
+
+  watch: {
+    open(open) {
+      this.drawer = open;
+    },
+    drawer(drawer) {
+      document.getElementById('scroll-container').classList.toggle('backdrop', drawer);
+    },
+  },
+
   methods: {
-    isOpenedChapter() {
-      return true;
+    toggle(force) {
+      this.$store.dispatch('nav/toggle', force);
+    },
+    onClick({ target }) {
+      // if click on link > close nav
+      if (target.href) {
+        this.toggle(false);
+      }
     },
   },
 };
 </script>
+
+<style lang="scss">
+.drawer {
+  display: block !important;
+  @apply absolute z-50;
+}
+</style>

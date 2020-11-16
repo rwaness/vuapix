@@ -1,11 +1,11 @@
 <template>
-  <div class="flex">
+  <div class="flex flex-wrap">
     <div
       v-for="(part, index) in breadcrumb"
       :key="`breadcrumb-${index}`"
       class="flex items-center"
     >
-      <nuxt-link :to="part.slug">
+      <nuxt-link :to="part.slug" class="truncate">
         {{ part.title }}
       </nuxt-link>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" :class="['w-5 h-5', { 'hidden': index === breadcrumb.length - 1}]">

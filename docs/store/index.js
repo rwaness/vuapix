@@ -27,13 +27,17 @@ export const actions = {
     commit('setArticles', articles.map(formatArticle));
   },
   // INIT HOME
-  initIndexPage({ dispatch }) {
-    dispatch('nav/toggleNav', false);
+  async initIndexPage({ dispatch }) {
+    await dispatch('nav/toggle', false);
   },
   // INIT DOC
-  initDocPage({ commit, dispatch }, { slug }) {
+  async initDocPage({ commit }, { slug }) {
     commit('setCurrentSlug', slug);
-    dispatch('nav/toggleNav', true);
+    await dispatch('nav/toggle', true);
+  },
+  // OTHERS COMMON ACTIONS
+  clickBackdrop({ dispatch }) {
+    dispatch('nav/toggle', false);
   },
 };
 
