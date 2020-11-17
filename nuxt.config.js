@@ -1,3 +1,16 @@
+async function routes() {
+  const { $content } = require('@nuxt/content');
+  const { formatArticle } = require('./docs/utils/format');
+  let articles = await $content('/', { deep: true }).only(['path']).fetch();
+  articles = articles.map(formatArticle);
+  // console.log(articles);
+  const routes = [
+    ...articles.map(({ slug }) => slug),
+  ];
+  // console.log(routes);
+  return routes;
+}
+
 export default {
   srcDir: 'docs/',
   target: 'static',
@@ -16,6 +29,7 @@ export default {
   },
   modules: [
     '@nuxt/content',
+    '@nuxtjs/sitemap',
   ],
   buildModules: [
     '@nuxtjs/tailwindcss',
@@ -32,6 +46,13 @@ export default {
       }
       return container.scrollTo({ top: 0, behavior: 'smooth' });
     },
+  },
+  generate: {
+    routes,
+  },
+  sitemap: {
+    hostname: 'https://vuapix.js.org',
+    routes,
   },
   content: {
     markdown: {
