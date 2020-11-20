@@ -97,15 +97,11 @@ a {
   @apply text-green-600;
   &:hover {
     @apply text-teal-800;
+    &.text-teal-800 {
+      @apply text-green-600;
+    }
   }
-  &.text-teal-800:hover {
-    @apply text-green-600;
-  }
-  &:focus {
-    color: initial;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-  }
-  &:active {
+  &:focus, &:active {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   }
 }
