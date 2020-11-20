@@ -1,4 +1,5 @@
 export const URL_DOCS = '/docs';
+const URL_DOCS_DEPTH = URL_DOCS.split('/').length;
 
 export function slugToTitle(slug) {
   return slug.split('-')
@@ -62,11 +63,11 @@ export function buildTree([ ...articles ]) {
     .reduce(builder, []).filter(Boolean);
 }
 
-export function matchPath(path, { slug }, depth = URL_DOCS.split('/').length) {
+export function matchPath(path, { slug }, depth = URL_DOCS_DEPTH) {
   return `${path}/`.startsWith(`${slug.split('/').slice(0, depth + 1).join('/')}/`);
 }
 
-export function breadcrumbBuilder(path, nodes, depth = URL_DOCS.split('/').length) {
-  const found = nodes?.find((node) => matchPath(path, node, depth));
+export function breadcrumbBuilder(path, nodes = [], depth = URL_DOCS_DEPTH) {
+  const found = nodes.find((node) => matchPath(path, node, depth));
   return (found) ? [found, ...breadcrumbBuilder(path, found.children, depth + 1)] : [];
 }

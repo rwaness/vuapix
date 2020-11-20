@@ -9,8 +9,8 @@
       </button>
 
       <!-- BRAND -->
-      <nuxt-link to="/" class="flex font-medium items-center text-teal-800">
-        <vuapix-logo class="text-xl tracking-wider">VUAPIX</vuapix-logo>
+      <nuxt-link to="/" class="text-xl font-medium tracking-wider text-teal-800">
+        <vuapix-logo>VUAPIX</vuapix-logo>
       </nuxt-link>
 
       <!-- TOP NAV -->

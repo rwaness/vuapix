@@ -26,7 +26,7 @@
           :to="subChapter.slug"
           class="py-2 flex items-center font-semibold text-teal-800"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+          <svg v-show="subChapter.children && subChapter.children.length" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
           </svg>
           <span class="ml-2">{{ subChapter.title }}</span>
@@ -58,12 +58,8 @@ export default {
       'open',
       'drawer',
       'tree',
+      'currentChapter',
     ]),
-    currentChapter() {
-      return this.tree.find((chapter) => (
-        this.$route.path.startsWith(chapter.slug.split('/').slice(0, 2).join('/'))
-      ));
-    },
   },
 
   watch: {

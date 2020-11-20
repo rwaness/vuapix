@@ -1,8 +1,8 @@
 <template>
-  <section class="home-page mx-auto flex flex-col py-12 items-center justify-center">
-    <vuapix-logo square class="mb-10 p-6 rounded-xl bg-green-200"/>
+  <section class="home-page mx-auto flex flex-col items-center justify-center">
+    <vuapix-logo />
 
-    <div class="lg:w-2/3 w-full">
+    <div class="my-4 w-full lg:w-2/3 ">
       <h1 class="text-3xl mb-4 font-black text-teal-800">VUAPIX</h1>
       <p class="mb-8 text-4xl font-light leading-none">
         Headless state manager to deal with APIs easily!

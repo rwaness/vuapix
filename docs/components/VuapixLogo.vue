@@ -27,6 +27,7 @@ export default {
   @apply text-teal-800 font-bold antialiased;
   text-shadow: #38a169 0.05em 0, #68d391 0.1em 0;
   transform: translateX(-.05em);
+  line-height: 1em;
 
   &.grey-scale {
     @apply text-gray-800;
@@ -35,6 +36,8 @@ export default {
 
   &.square {
     @apply inline-flex justify-center items-center;
+    transform: none;
+    line-height: auto;
     &::after {
       content: ' ';
       @apply block;
