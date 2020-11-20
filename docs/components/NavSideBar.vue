@@ -24,7 +24,7 @@
       >
         <nuxt-link 
           :to="subChapter.slug"
-          class="py-2 flex items-center font-medium text-gray-600"
+          class="py-2 flex items-center font-semibold text-teal-800"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
@@ -32,11 +32,11 @@
           <span class="ml-2">{{ subChapter.title }}</span>
         </nuxt-link >
 
-        <ul class="ml-8">
+        <ul>
           <li v-for="(article, idx) in subChapter.children" :key="`article-${index}-${idx}`">
             <nuxt-link
               :to="article.slug"
-              class="block py-2 text-sm text-gray-600"
+              class="block pl-8 py-2 text-sm font-medium text-gray-700 hover:bg-green-200 hover:text-teal-800"
             >
               {{ article.title }}
             </nuxt-link>

@@ -10,22 +10,22 @@
       <h1 class="mb-6">{{ article.title }}</h1>
 
       <div class="flex-1 flex flex-col items-start lg:flex-row-reverse items-stretch">
-        <nav v-if="article.toc.length > 0" class="mb-6 px-2 pt-2 lg:w-48 lg:mb-0 lg:ml-4 bg-gray-200">
-          <span>Table of contents</span>
+        <nav v-if="article.toc.length > 0" class="mb-6 px-2 pt-2 lg:w-48 lg:mb-4 lg:ml-4 rounded bg-green-100">
+          <div class="font-medium mb-2">Table of contents</div>
           <ul class="list-disc list-inside">
             <li
               v-for="anchor of article.toc"
               :key="anchor.id"
-              :class="{ 'py-2': anchor.depth === 2, 'ml-2 pb-2': anchor.depth === 3 }">
+              :class="{ 'py-1': anchor.depth === 2, 'ml-2 pb-2': anchor.depth === 3 }">
               <nuxt-link :to="`#${anchor.id}`">{{ anchor.text }}</nuxt-link>
             </li>
           </ul>
         </nav>
 
         <article class="article-content flex-1 flex flex-col">
-          <nuxt-content :document="article" />
+          <nuxt-content :document="article" class="mb-4"/>
 
-          <nav-prev-next class="md:hidden mt-4 border-t-2" />
+          <nav-prev-next class="md:hidden border-t-2" />
         </article>
       </div>
     </div>
@@ -91,7 +91,7 @@ export default {
         .nuxt-content-highlight {
           @apply relative overflow-x-auto;
           .filename {
-            @apply absolute right-0 text-gray-600 font-light z-10 m-2 text-sm;
+            @apply absolute right-0 text-gray-600 z-10 m-2 text-sm;
           }
         }
       }

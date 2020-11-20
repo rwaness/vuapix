@@ -26,6 +26,7 @@ export default {
 .vuapix-logo {
   @apply text-teal-800 font-bold antialiased;
   text-shadow: #38a169 0.05em 0, #68d391 0.1em 0;
+  transform: translateX(-.05em);
 
   &.grey-scale {
     @apply text-gray-800;
@@ -41,6 +42,7 @@ export default {
     }
     .content {
       @apply h-0 flex justify-center items-center;
+      transform: translateX(-.05em);
     }
   }
 }

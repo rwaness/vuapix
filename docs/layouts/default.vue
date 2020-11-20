@@ -1,5 +1,5 @@
 <template>
-  <div id="scroll-container" :class="['h-screen w-full overflow-x-hidden', { 'relative overflow-y-hidden': drawer }]">
+  <div id="scroll-container" :class="['h-screen w-full overflow-x-hidden text-gray-800 ', { 'relative overflow-y-hidden': drawer }]">
     <nav-header />
 
     <div class="h-full -mt-20 pt-20 flex flex-col">
@@ -98,8 +98,11 @@ a {
   &:hover {
     @apply text-teal-800;
   }
-  &:focus {
+  &.text-teal-800:hover {
     @apply text-green-600;
+  }
+  &:focus {
+    color: initial;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   }
   &:active {
