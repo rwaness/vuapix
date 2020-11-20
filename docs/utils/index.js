@@ -61,3 +61,12 @@ export function buildTree([ ...articles ]) {
     .sort((a1, a2) => a1.pos < a2.pos ? -1 : 1)
     .reduce(builder, []).filter(Boolean);
 }
+
+export function matchPath(path, { slug }, depth = URL_DOCS.split('/').length) {
+  return `${path}/`.startsWith(`${slug.split('/').slice(0, depth + 1).join('/')}/`);
+}
+
+export function breadcrumbBuilder(path, nodes, depth = URL_DOCS.split('/').length) {
+  const found = nodes?.find((node) => matchPath(path, node, depth));
+  return (found) ? [found, ...breadcrumbBuilder(path, found.children, depth + 1)] : [];
+}

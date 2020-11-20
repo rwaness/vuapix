@@ -4,18 +4,18 @@ import { formatArticle } from '@/utils';
 export const state = () => ({
   version: '',
   articles: [],
-  currentSlug: '/',
+  currentPath: '/',
 });
 
 export const getters = {
   version: (state) => state.version,
   articles: (state) => state.articles,
-  currentSlug: (state) => state.currentSlug,
+  currentPath: (state) => state.currentPath,
   articleBySlug: (state, getters) => (slug) => {
     const articles = getters.articles.filter((article) => article.slug.startsWith(slug));
     return (articles.length === 1)
       ? articles[0]
-      : articles.sort((a1, a2) => (a1.order < a2.order) ? -1 : 1).shift();
+      : articles.sort((a1, a2) => (a1.pos < a2.pos) ? -1 : 1).shift();
   },
 };
 
@@ -31,8 +31,8 @@ export const actions = {
     await dispatch('nav/toggle', false);
   },
   // INIT DOC
-  async initDocPage({ commit, dispatch }, { slug }) {
-    commit('setCurrentSlug', slug);
+  async initDocPage({ commit, dispatch }, { path }) {
+    commit('setCurrentPath', path);
     await dispatch('nav/toggle', true);
   },
   // OTHERS COMMON ACTIONS
@@ -48,7 +48,7 @@ export const mutations = {
   setArticles(state, articles) {
     state.articles = articles;
   },
-  setCurrentSlug(state, slug) {
-    state.currentSlug = slug;
+  setCurrentPath(state, path) {
+    state.currentPath = path;
   }
 };

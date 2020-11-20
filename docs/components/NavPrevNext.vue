@@ -32,22 +32,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'NavPrevNext',
 
   computed: {
-    allArticles() {
-      return this.$store.getters['nav/articles'];
-    },
-    currentArticleIndex() {
-      return this.allArticles.findIndex(({ slug }) => this.$route.path === slug);
-    },
-    previousArticle() {
-      return this.allArticles[this.currentArticleIndex - 1];
-    },
-    nextArticle() {
-      return this.allArticles[this.currentArticleIndex + 1];
-    },
+    ...mapGetters('nav', [
+      'previousArticle',
+      'nextArticle',
+    ]),
   },
 };
 </script>

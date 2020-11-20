@@ -19,20 +19,12 @@
 </template>
 
 <script>
-import { URL_DOCS } from '@/utils';
-
 export default {
   name: 'NavBreadcrumb',
 
   computed: {
     breadcrumb() {
-      const deepBuilder = (nodes, depth = 1) => {
-        const found = nodes?.find(({ slug }) => (
-          this.$route.path.startsWith(slug.split('/').slice(0, depth + URL_DOCS.split('/').length).join('/'))
-        ));
-        return (found) ? [found, ...deepBuilder(found.children, depth + 1)] : [];
-      }
-      return deepBuilder(this.$store.getters['nav/tree']);
+      return this.$store.getters['nav/breadcrumb'];
     },
   },
 };

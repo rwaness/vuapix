@@ -71,8 +71,18 @@ export default {
     }
   },
 
-  async fetch() {
-    await this.$store.dispatch('initDocPage', { slug: this.$route.path });
+  mounted() {
+    this.initPage();
+  },
+
+  updated() {
+    this.initPage();
+  },
+
+  methods: {
+    async initPage() {
+      await this.$store.dispatch('initDocPage', this.$route);
+    },
   },
 };
 </script>
