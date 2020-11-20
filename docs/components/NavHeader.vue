@@ -9,8 +9,8 @@
       </button>
 
       <!-- BRAND -->
-      <nuxt-link to="/" class="flex title-font font-medium items-center text-green-800">
-        <span class="text-xl">VUAPIX</span>
+      <nuxt-link to="/" class="flex font-medium items-center text-teal-800">
+        <vuapix-logo class="text-xl">VUAPIX</vuapix-logo>
       </nuxt-link>
 
       <!-- TOP NAV -->
@@ -20,7 +20,7 @@
             v-for="(chapter, index) in tree"
             :key="`chapter-${index}`"
             :to="chapter.slug"
-            class="mx-2 hover:text-gray-900"
+            class="mx-4 hover:text-gray-900"
           >
             {{ chapter.title }}
           </nuxt-link>
@@ -41,8 +41,14 @@
 </template>
 
 <script>
+import VuapixLogo from '@/components/VuapixLogo';
+
 export default {
   name: 'NavHeader',
+
+  components: {
+    VuapixLogo,
+  },
 
   computed: {
     tree() {

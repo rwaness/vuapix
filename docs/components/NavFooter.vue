@@ -1,38 +1,36 @@
 <template>
-  <footer class="text-gray-700 body-font border-t-2">
-    <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col">
-      <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-        <nuxt-link to="/" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-          <span class="ml-3 text-xl">Vuapix</span>
+  <footer class="text-gray-700 border-t-2">
+    <div class="container mx-auto py-8 flex flex-col items:stretch flex-wrap md:flex-row md:items-center md:flex-no-wrap">
+      <div class="w-64 px-4 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+        <nuxt-link to="/" class="text-center text-xl font-medium text-teal-800">
+          <vuapix-logo grey-scale square class="p-2 rounded-full bg-green-600 text-xl"/>
+          <span class="ml-3">Vuapix</span>
         </nuxt-link>
-        <p class="mt-2 text-sm text-gray-500">The headless state managmer to handle API calls easily!</p>
+        <p class="mt-2 text-sm text-gray-500">Headless state manager to deal with APIs easily!</p>
       </div>
-      <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+      <div class="flex-1 flex flex-wrap justify-evenly text-center md:text-left">
         <div
           v-for="(chapter, index) in tree"
           :key="`footer-${index}`"
-          class="lg:w-1/4 md:w-1/2 w-full px-4"
+          class="m-4"
         >
-          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+          <h2 class="font-medium text-gray-900 tracking-widest text-sm mb-2">
             <nuxt-link :to="chapter.slug">{{ chapter.title }}</nuxt-link>
           </h2>
-          <nav class="list-none mb-10">
+          <nav class="list-none">
             <ul>
               <li v-for="(child, idx) in chapter.children" :key="`footer-link-${index}-${idx}`">
                 <nuxt-link :to="child.slug" class="text-gray-600 hover:text-gray-800">
                   {{ child.title }}
                 </nuxt-link>
-                </li>
+              </li>
             </ul>
           </nav>
         </div>
       </div>
     </div>
     <div class="bg-gray-200">
-      <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row sm:justify-center">
+      <div class="mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row sm:justify-center">
         <p class="text-gray-500 text-sm text-center sm:text-left">© 2020 vuapix —
           <a href="https://github.com/rwaness" target="_blank" rel="noopener noreferrer" class="text-gray-600 ml-1">@rwaness</a>
         </p>
@@ -68,8 +66,14 @@
 </template>
 
 <script>
+import VuapixLogo from '@/components/VuapixLogo';
+
 export default {
   name: 'NavFooter',
+
+  components: {
+    VuapixLogo,
+  },
 
   computed: {
     tree() {

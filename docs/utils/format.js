@@ -1,3 +1,5 @@
+import { URL_DOCS } from '@/constants';
+
 export function slugToTitle(slug) {
   return slug.split('-')
     .map(([cap, ...end]) => `${cap.toUpperCase()}${end.join('')}`)
@@ -20,7 +22,7 @@ export function formatArticle(article) {
       slug: `${acc.slug}${name !== 'index' ? `/${name}` : ''}`,
       title: name !== 'index' ? slugToTitle(name) : acc.title,
     };
-  }, { slug: '' });
+  }, { slug: URL_DOCS });
   return {
       title,
       ...article,
@@ -38,7 +40,7 @@ export function buildTree([ ...articles ]) {
       const arrPos = article.pos.split('.');
       const currPos = arrPos[depth - 1];
       if (!tree[currPos]) {
-        const arrPath = article.slug.split('/');
+        const arrPath = article.slug.split('/').slice(URL_DOCS.split('/').length - 1);
         if (depth === arrPos.length) {
           tree[currPos] = article;
         } else {

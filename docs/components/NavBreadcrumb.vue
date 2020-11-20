@@ -3,9 +3,12 @@
     <div
       v-for="(part, index) in breadcrumb"
       :key="`breadcrumb-${index}`"
-      class="flex items-center"
+      class="flex items-center py-2"
     >
-      <nuxt-link :to="part.slug" class="truncate">
+      <span v-if="part.slug === breadcrumb[breadcrumb.length - 1].slug" class="truncate">
+        {{ part.title }}
+      </span>
+      <nuxt-link v-else :to="part.slug" class="truncate">
         {{ part.title }}
       </nuxt-link>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" :class="['w-5 h-5', { 'hidden': index === breadcrumb.length - 1}]">
@@ -16,6 +19,8 @@
 </template>
 
 <script>
+import { URL_DOCS } from '@/constants';
+
 export default {
   name: 'NavBreadcrumb',
 
@@ -23,7 +28,7 @@ export default {
     breadcrumb() {
       const deepBuilder = (nodes, depth = 1) => {
         const found = nodes?.find(({ slug }) => (
-          this.$route.path.startsWith(slug.split('/').slice(0, depth + 1).join('/'))
+          this.$route.path.startsWith(slug.split('/').slice(0, depth + URL_DOCS.split('/').length).join('/'))
         ));
         return (found) ? [found, ...deepBuilder(found.children, depth + 1)] : [];
       }

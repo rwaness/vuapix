@@ -1,5 +1,5 @@
 # VUAPIX
-**Headless state management to handle API calls for Vue.js based on vuex**
+**Headless state manager to deal with APIs easily!**
 
 website documentation coming soon ... 🚀
 

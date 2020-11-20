@@ -1,10 +1,10 @@
 {
   "name": "vuapix",
   "version": "1.0.0",
-  "description": "Headless state management to handle API calls for Vue.js based on vuex",
+  "description": "Headless state manager to deal with APIs easily!",
   "main": "src/index.ts",
   "scripts": {
-    "docs": "nuxt --port 3007",
+    "docs": "nuxt --port 3777",
     "docs:publish": "git add docs/content/ && git commit -m \"publish new content\" && git stash && npm run docs:generate && git add dist/ && git commit --amend --no-edit && git push && npm run docs:deploy",
     "docs:generate": "nuxt generate",
     "docs:start": "nuxt start",
@@ -33,8 +33,8 @@
   "homepage": "https://github.com/rwaness/vuapix#readme",
   "devDependencies": {
     "@nuxt/content": "^1.10.0",
-    "nuxt": "^2.14.7",
     "node-sass": "^4.14.1",
+    "nuxt": "^2.14.7",
     "sass-loader": "^8.0.2"
   },
   "dependencies": {

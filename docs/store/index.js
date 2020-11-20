@@ -23,7 +23,7 @@ export const actions = {
   // INIT SERVER
   async nuxtServerInit({ commit }, { $content }) {
     commit('setVersion', packageJson.version);
-    const articles = await $content('/', { deep: true }).only(['path']).fetch();
+    const articles = await $content('/', { deep: true }).only(['path', 'title']).fetch();
     commit('setArticles', articles.map(formatArticle));
   },
   // INIT HOME
