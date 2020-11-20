@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { URL_DOCS } from '@/constants';
+import { URL_DOCS } from '@/utils';
 
 export default {
   name: 'NavBreadcrumb',

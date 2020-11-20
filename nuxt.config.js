@@ -1,6 +1,6 @@
 async function routes() {
   const { $content } = require('@nuxt/content');
-  const { formatArticle } = require('./docs/utils/format');
+  const { formatArticle } = require('./docs/utils');
   let articles = await $content('/', { deep: true }).only(['path']).fetch();
   articles = articles.map(formatArticle);
   // console.log(articles);

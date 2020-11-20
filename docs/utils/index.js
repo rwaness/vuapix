@@ -1,4 +1,4 @@
-import { URL_DOCS } from '@/constants';
+export const URL_DOCS = '/docs';
 
 export function slugToTitle(slug) {
   return slug.split('-')

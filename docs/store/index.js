@@ -1,5 +1,5 @@
 import packageJson from '../../package.json';
-import { formatArticle } from '@/utils/format';
+import { formatArticle } from '@/utils';
 
 export const state = () => ({
   version: '',

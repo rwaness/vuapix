@@ -1,4 +1,4 @@
-import { buildTree } from '@/utils/format';
+import { buildTree } from '@/utils';
 
 export const state = () => ({
   open: true,

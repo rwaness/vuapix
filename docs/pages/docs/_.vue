@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { formatArticle } from '@/utils/format';
+import { formatArticle } from '@/utils';
 import NavBreadcrumb from '@/components/NavBreadcrumb';
 import NavPrevNext from '@/components/NavPrevNext';
 
